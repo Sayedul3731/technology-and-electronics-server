@@ -27,6 +27,7 @@ async function run() {
 
     const brandCollection = client.db('brandDB').collection('brand')
     const feedbackCollection = client.db('feedBackDB').collection('feedback')
+    const memberCollection = client.db('memberDB').collection('member')
 
     app.post('/brand', async(req, res) => {
         const newBrand = req.body;
@@ -36,9 +37,23 @@ async function run() {
 
     app.post('/feedback', async(req, res) => {
       const newFeedback = req.body;
+      console.log(newFeedback);
       const result = await feedbackCollection.insertOne(newFeedback)
       res.send(result)
     })
+    app.post('/member', async(req, res) => {
+      const newMember = req.body;
+      console.log(newMember);
+      const result = await memberCollection.insertOne(newMember)
+      res.send(result)
+    })
+
+
+    app.get('/feedback', async(req, res) => {
+      const cursor = feedbackCollection.find();
+      const result = await cursor.toArray();
+      res.send(result)
+  })
 
     app.get('/brand', async(req, res) => {
         const cursor = brandCollection.find();
