@@ -33,6 +33,11 @@ async function run() {
         res.send(result)
     })
 
+    app.post('/feedback', async(req, res) => {
+      const newFeedback = req.body;
+      console.log(newFeedback);
+    })
+
     app.get('/brand', async(req, res) => {
         const cursor = brandCollection.find();
         const result = await cursor.toArray();
