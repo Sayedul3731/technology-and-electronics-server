@@ -96,8 +96,10 @@ async function run() {
       const cursor = cartCollection.find()
       const result = await cursor.toArray()
       res.send(result)
+     
     })
-    
+
+
     app.delete('/cart/:id', async (req, res) => {
       const id = req.params.id;
       const query = { _id: id }
