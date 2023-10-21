@@ -23,7 +23,7 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
+    // await client.connect();
 
     const brandCollection = client.db('brandDB').collection('brand')
     const feedbackCollection = client.db('feedBackDB').collection('feedback')
@@ -97,15 +97,7 @@ async function run() {
       const result = await cursor.toArray()
       res.send(result)
     })
-
-
-    // app.get('/cart/:id', async (req, res) => {
-    //   const id = req.params.id;
-    //   const query = { _id: new ObjectId(id) }
-    //   const result = await cartCollection.findOne(query)
-    //   res.send(result)
-    // })
-
+    
     app.delete('/cart/:id', async (req, res) => {
       const id = req.params.id;
       const query = { _id: id }
